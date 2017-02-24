@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <title>بلح</title>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="{% static "tables/js/bootstrap.min.js" %}"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{% static "tables/css/dependent-dropdown.min.css" %}" />
+    <link href="{% static "tables/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "tables/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+</head>
+    <style>
+        @import url('https://www.fontstatic.com/f=smartman');
+        *{
+        	padding: 0;
+        	margin: 0;
+        }
+        body{
+            /*padding:50px 0px 0px 0px;*/
+            margin-top: 20px;
+            font-family: 'smartman'; 
+            font-size: 24px;
+        }
+       input[type="email"] {
+            border: 2px solid #d9534f;
+            padding-left: 40px;
+            padding-right: 0px;
+            width: 100%;
+            height: 50%;
+            border-top-style: dashed;
+            border-right-style: solid;
+            border-left-style:dashed ;
+        }
+        .btn{
+            background-color: buttonface;
+            padding: 8px 37px;
+            margin: 4px 3px;
+            width: 100%;
+            position: relative;
+        }
+        li{
+                list-style: none;
+        }
+        .block{
+            border: 5px solid #ecf0f1;
+            padding: 20px;
+            width: 100%;
+            height: 100%; 
+            border-right: solid 15px #ecf0f1;
+            border-top-style: dashed;
+            border-bottom: none;
+            border-right-style: solid;
+            border-left-style:dashed ;
+            
+        }
+
+        .block tr{
+        	padding: 20px;
+        }
+       
+		#submit_form{
+			margin 100px;
+		    padding: 20px;
+		    background-color: #c0392b;
+		    color: #fff;
+		    margin-top: 20px;
+		    text-decoration: none;
+            display: block; 
+            text-align: center;
+            margin-bottom: 10px;
+
+		}
+
+        #submit_form:hover{
+            color: #c0392b;
+            background-color: #ecf0f1;
+            transition: 1s ease;
+        }
+        .label{
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            width:100%;
+            line-height: 30px;
+            display: block;
+
+
+            
+        }
+        td{
+        	padding: 10px;
+        }
+        #h-p{
+            padding-top: 20px; 
+            padding-bottom: 20px; 
+            padding-left: 40px;
+            padding-right: 40px;
+            width: 100%;
+            height: 100%;
+            background-color: #c0392b;     
+            color: #ecf0f1;       
+        }
+        .rs{
+              display: inline;
+              color : #2c3e50;
+
+        }
+        span{
+        	margin: 0 5px;
+        }
+
+        .sorry{
+            width: 100%;
+            height: auto;  
+        }
+
+        .sorry img{
+            margin-left: auto;
+            margin-right: auto;
+            display: block; 
+            margin-bottom: 2px;
+        }
+		        
+</style>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="form-group row" >
+                <div class="col-lg-12 ">
+                    <p id="h-p" style="text-align: center;"> 
+						<span class="glyphicon glyphicon-remove"> </span>حظك وحش المرادي، مفيش أي نتايج لرغبات حضرتك. حاول كده تجرب تاني حاول كده.
+                   	</p> 
+                    <div class="sorry col-lg-12">
+                        <img src="{% static "tables/img/sorry.jpg" %}" class="img-responsive">
+                    </div> 
+                </div> 
+            </div>
+        </form>
+        <a href="{% url 'index' %}" id="submit_form" style="font-size: 24px;" > محاولة تانية </a>
+     </div>
+    <script type="text/javascript">
+        
+    </script>
+    {{subjects}}
+</body>
+
+</html>

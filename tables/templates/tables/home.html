@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bala7</title>
+		{% load static %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="{% static "tables/js/bootstrap.min.js" %}"></script>
+		
+		<link rel="stylesheet" type="text/css" href="{% static "tables/css/dependent-dropdown.min.css" %}" />
+	    <link href="{% static "tables/css/bootstrap.min.css" %}" rel="stylesheet">
+	    <link href="{% static "tables/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+
+        <style>
+	        @import url('https://www.fontstatic.com/f=smartman');
+	        *{
+	        	padding: 0;
+	        	margin: 0;
+	        }
+	        body{
+	            font-family: 'smartman'; 
+                direction: rtl;
+            	color: #2c3e50;
+
+	        }
+	         input[type="text"] {
+	            width: 100%;
+	            padding: 10px;
+	            border: none;
+	            border-bottom: solid 2px #c9c9c9;
+	            transition: border 0.3s;
+	            }
+	            input[type="text"].focus {
+	            border-bottom: solid 2px #969696;
+	            }
+	        .block{
+	            border: 2px solid #ABCFFF; 
+	            padding-left: 40px;
+	            padding-right: 0px;
+	            width: 100%;
+	            height: 100%; 
+	            border-top-style: dashed;
+	            border-right-style: solid;
+	            border-bottom-style: dashed;
+	            border-left-style:dashed ;
+	            
+	        }
+	        select {
+	            border: 0 !important;  /*Removes border*/
+	            -webkit-appearance: none;  /*Removes default chrome and safari style*/
+	            -moz-appearance: none; /* Removes Default Firefox style*/
+	            appearance:none;
+	            background: ##ecf0f1  ;url({% static "tables/img/select-arrow.png" %}) no-repeat 90% center;
+	            width: 100%; /*Width of select dropdown to give space for arrow image*/
+	            text-indent: 0.01px; /* Removes default arrow from firefox*/
+	            text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+	            color: #2c3e50;
+	            border-radius: 15px;
+	            padding: 5px;
+	            /*box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);*/
+	            border-radius: 10px 0;
+	            width: 100%;
+	            padding: 10px;
+	            margin-bottom: 5px;
+	            text-align: center;
+
+	        }
+
+	        option{
+	        	padding: 10px;
+	        }
+
+	        #submit_form{
+	            width: 100%;
+	            padding: 20px;
+	            background-color: #c0392b;
+	            border: 0;
+	            box-shadow: 0;
+	            color: #fff;
+	            margin-top: 20px;
+	        }
+
+	        #submit_form:hover{
+	            color: #c0392b;
+	            background-color: #ecf0f1;
+	            transition: 1s ease;
+	        }
+		        
+		</style>
+	</head>
+	<body>
+		<div class="container">
+	        <div class="home">
+	            <div class="row">
+	                <div col-lg-6 col-sm-2 col-xs-2 >
+	                    <div  style="
+	                    height: 200px; width: 50%; 
+	                    background-image: url({% static "tables/img/bala7.jpeg" %});
+	                    background-repeat: no-repeat;
+	                    /*background-position: center center;*/
+	                    background-size: 100% ;
+	                    margin: auto;
+	                    margin-top: 0;
+	                    ">
+	                    </div>
+	                </div>
+	            </div>
+
+
+	            <p  style="font-size:24px" align="middle"> ويلكم في بلح | صديق الطلبة</p>
+	            <form action="{% url 'get_input' %}">
+	            	{% csrf_token %}
+		            <div class="form-group row">
+		                <div class="col-lg-6 col-lg-offset-3">
+		                    <label for="university">اختار جامعتك </label><br>
+	                		<select name="university" id="university-id" required>
+								{% for univ in univs %}
+									<option value="{{univ.id}}">{{ univ.name }}</option>
+								{% endfor %}
+							</select>
+		                </div>
+		            </div><br>
+		            <div class="form-group row">
+		                <div class="col-lg-6 col-lg-offset-3" >
+		                    <label for="univer-choose">اختار كليتك </label><br>
+	                    		<select name="faculties" id="faculty-id" required>
+	                    			<option default></option>
+									{% for fac in faculty %}
+										<option value="{{fac.id}}">{{ fac.name }}</option>
+									{% endfor %}
+								</select>  
+		                </div>
+		            </div><br>
+		            <div class="form-group row">
+		                <div class="col-lg-6 col-lg-offset-3">
+		                    <label for="dep-choose">اختار قسمك </label><br>
+	                		<select name="departments" id="department-id" required>
+								{% for depar in departments %}
+									<option value="{{depar.id}}">{{ depar.name }}</option>
+								{% endfor %}
+							</select>
+		                </div>
+		            </div>
+		            <div class="form-group row">
+		                <div class="col-lg-6 col-lg-offset-3">
+		                    <input type="submit" value="عايز تحضر ايه بكرا؟" id="submit_form" style="font-size: 24px;" />
+		                </div>
+		            </div> 
+	            </form>
+	        </div>
+	    </div>
+
+		<!-- Javascript call on document ready -->
+		<script >
+			$(document).ready(function(){
+				var uni = $("#university-id");
+			    var fac = $("#faculty-id");
+			    var dep = $("#department-id");
+			    uni[0].selectedIndex = -1;
+			    fac[0].selectedIndex = -1;
+			    dep[0].selectedIndex = -1;
+				$('#university-id').change(function(){
+					var university_id = $('#university-id').find(":selected").val();
+					$.ajax({
+						url: "callback/getfac?uni_id="+university_id,
+						success: function(faculties){
+							$('#faculty-id').empty();
+							$('#department-id').empty();
+							var dd = JSON.parse(faculties);
+							for(var i = 0; i < faculties.length; i++)
+							{
+								$('#faculty-id').append($('<option>', {
+								    value: dd[i].pk,
+								    text: dd[i].fields.name
+								}));
+							}
+						},
+						failure: function(){
+							console.log('failed Ajax request');
+						}
+					});
+				})
+
+				$('#faculty-id').change(function(){
+					var faculty_id = $('#faculty-id').find(":selected").val();
+					$.ajax({
+						url: "callback/getdeps?fac_id="+faculty_id,
+						success: function(faculties){
+							$('#department-id').empty();
+							var dd = JSON.parse(faculties);
+							for(var i = 0; i < faculties.length; i++)
+							{
+								console.log(dd[i].pk);
+							$('#department-id').append($('<option>', {
+							    value: dd[i].pk,
+							    text: dd[i].fields.name
+							}));
+							}
+						},
+						failure: function(){
+							alert('في حاجة غلط! لو اتكرر الموضوع ابعتلنا المشكلة.')
+						}
+					});
+				})
+			});
+
+
+		</script>
+	</body>
+</html>

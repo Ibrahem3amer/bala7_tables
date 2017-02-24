@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <title>بلح</title>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{% static "tables/js/bootstrap.min.js" %}"></script>
+    
+    
+    
+    <link rel="stylesheet" type="text/css" href="{% static "tables/css/dependent-dropdown.min.css" %}" />
+    <link href="{% static "tables/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "tables/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    
+</head>
+    <style>
+        @import url('https://www.fontstatic.com/f=smartman');
+        body{
+            padding:50px 0px 0px 0px;
+            font-family: 'smartman'; 
+            font-size: 24px;
+            direction: rtl;
+            color: #2c3e50;
+        }
+       input[type="email"] {
+            border: 5px solid #ecf0f1;
+            padding: 15px;
+            width: 100%;
+            height: 50%;
+            border-top-style: dashed;
+            border-right: solid 15px #ecf0f1;
+            border-bottom-style: dashed;
+            border-left-style:dashed ;
+        }
+        label{
+            margin-bottom: 2px;
+        }
+        .btn{
+            background-color: buttonface;
+            padding: 8px 37px;
+            margin: 4px 3px;
+            width: 100%;
+            position: relative;
+        }
+        li{
+                list-style: none;
+        }
+        .block{
+            border: 5px solid #ecf0f1;
+            padding-top: 20px; 
+            padding-bottom: 20px; 
+            padding-left: 40px;
+            padding-right: 0px;
+            color: #c0392b;
+            width: 100%;
+            height: 100%; 
+            border-top-style: dashed;
+            border-right: solid 15px #ecf0f1;
+            border-bottom-style: dashed;
+            border-left-style:dashed ;
+            
+        }
+
+        .form-group{
+            margin-bottom: 50px;
+        }
+
+        #submit_form{
+            width: 100%;
+            padding: 20px;
+            background-color: #c0392b;
+            border: 0;
+            box-shadow: 0;
+            color: #fff;
+        }
+
+        #submit_form:hover{
+            color: #c0392b;
+            background-color: #ecf0f1;
+            transition: 1s ease;
+        }
+
+        .display_results{
+            text-align: right;
+            font-size: 80%;
+        }
+
+        .display_results li{
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+
+        .display_results li:hover{
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            transition: 1s ease;   
+        }
+
+        h5{
+            margin-bottom: 17px;
+            color: #7f8c8d;
+        }
+</style>
+
+<body>
+    <div class="container">
+        <form action="{% url 'get_resutls' %}" class="user_query">
+            <div class="form-group row" >
+                <div class="col-lg-6 col-lg-offset-3 ">
+                    <label for="email">ايميلك ؟</label>
+                    <span class="description"><h5>هنستخدمه عشان نبعتلك عليه تنبيهات بخصوص الإمتحانات والجداول.</h5></span>
+                    <div class="">
+                        <div class="col-lg-14 ">
+                            <input type="email" class="email_input" name="user_email" id="email" placeholder="ايميلك" required>
+                        </div>
+                    </div>
+                    
+                </div> 
+            </div>
+            <div class="form-group row ">
+                <div class="col-lg-6 col-lg-offset-3  ">
+                    <label for="email">عايز تحضر أيام ايه الأسبوع ده؟ </label>
+                    <span class="description"><h5>متختارش حاجة لو عاوز تشوف نتايج الأيام كلها.</h5></span>
+                        <div class="block" id="check_box" >
+                            <ul class="display_results">
+                                <li>
+                                    {% if off_days == 1 %}
+                                        <input type="checkbox" name="day" class="day_check"   id="bt1ck" value="0" disabled />   السبت
+                                    {% else %}
+                                        <input type="checkbox" name="day" class="day_check"  id="bt1ck" value="0"  />   السبت
+                                    {% endif %}
+
+                                </li>
+                                <li>
+                                    
+                                    <input type="checkbox" name="day" class="day_check" id="bt2ck" value="{{ 1|subtract:off_days }}"/>   الاحد
+                                </li>
+                                <li>
+                                    
+                                    <input type="checkbox" name="day" class="day_check" id="bt3ck" value="{{ 2|subtract:off_days }}"/>   الاثنين
+                                </li>
+                                <li>
+                                    
+                                    <input type="checkbox" name="day" class="day_check" id="bt4ck" value="{{ 3|subtract:off_days }}"/>   الثلاثاء
+                                </li>
+                                <li>
+                                    
+                                    <input type="checkbox" name="day" class="day_check" id="bt5ck" value="{{ 4|subtract:off_days }}"/>   الاربعاء
+                                </li>
+                                <li>
+                                    {% if off_days == 0 %}
+                                        <input type="checkbox" name="day" class="day_check" id="bt6ck" value="{{ 5|subtract:off_days }}" disabled />   الخميس
+                                    {% else %}
+                                        <input type="checkbox" name="day" class="day_check" id="bt6ck" value="{{ 5|subtract:off_days }}" />   الخميس
+                                    {% endif %}
+
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <label for="email">ايه المواد اللي بتفضل تحضرها؟ </label>
+                    <span class="description"><h5>متختارش حاجة لو عايز تعرف مواعيد كل المواد.</h5></span>
+                        <div class="block" id="check_box" align="middle">
+                            <ul class="display_results">
+                                {% for subject in subjects %}
+                                    <li>
+                                        <input type="checkbox" name="subject" class="subject_check" value="{{subject.name}}" />   {{subject.name}}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <label for="email">عايز تحضر في سكشن/جروب معين؟ </label>
+                    <span class="description"><h5>سيبه فاضي لو عاوز تشوف مواعيد كل السكاشن.</h5></span>
+                    <div class="block" id="check_box" align="middle">
+                        <ul class="display_results">
+                            {% for section in sections %}
+                                <li>
+                                    <input type="checkbox" name="section" class="section_check" value="{{section.pk}}" />   {{section.name}}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <label for="email">مش عايز دي في دي  ؟ </label>
+                    <span class="description"><h5>مانت جاي تحقق أحلامك بقى!</h5></span>
+                    <div class="block" id="check_box" align="middle">
+                        <ul class="display_results">
+                            <li>
+                                <input type="radio" id="bt12ck" name="tea" />   اه
+                            </li>
+                            <li>
+                                <input type="radio" id="bt13ck" name="tea" />   لأ
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <input type="submit" value="ع البركة" id="submit_form" />
+                </div>
+            </div> 
+        </form>
+     </div>
+     <script type="text/javascript">
+     $('form').submit(function(event){
+        if( !$('.day_check').is(':checked') && !$('.subject_check').is(':checked') && !$('.section_check').is(':checked')){
+            alert('اه ده انت جاي تهزر بقى :D \nاختار أيام أو مواد أو سكاشن');
+            event.preventDefault();
+        }
+     });
+     </script>
+</body>
+
+</html>

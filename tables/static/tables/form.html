@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <title>بلح</title>
+            <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="js/myjs.js">
+    
+</head>
+    <style>
+        @import url('https://www.fontstatic.com/f=smartman');
+        body{
+            padding:50px 0px 0px 0px;
+            font-family: 'smartman'; 
+            font-size: 24px;
+        }
+       input[type="email"] {
+            border: 2px solid #d9534f;
+            padding-left: 40px;
+            padding-right: 0px;
+            width: 100%;
+            height: 50%;
+           border-top-style: dashed;
+            border-right-style: solid;
+            border-bottom-style: dashed;
+            border-left-style:dashed ;
+        }
+        .btn{
+            background-color: buttonface;
+            padding: 8px 37px;
+            margin: 4px 3px;
+            width: 100%;
+            position: relative;
+        }
+        li{
+                list-style: none;
+        }
+        .block{
+            border: 2px solid #d9534f;
+            padding-top: 20px; 
+            padding-bottom: 20px; 
+            padding-left: 40px;
+            padding-right: 0px;
+            width: 100%;
+            height: 100%; 
+            border-top-style: dashed;
+            border-right-style: solid;
+            border-bottom-style: dashed;
+            border-left-style:dashed ;
+            
+        }
+</style>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="form-group row" >
+                <div class="col-lg-6 col-lg-offset-3 ">
+                    <label for="email">ايميلك ؟</label><br>
+                    <div class="">
+                        <div class="col-lg-14 ">
+                            <input type="email" class="" id="email" placeholder="   ايميلك">
+                        </div>
+                    </div>
+                    
+                </div> 
+            </div>
+            <br>
+            <div class="form-group row ">
+                <div class="col-lg-6 col-lg-offset-3  ">
+                    <label for="email">ايه الايام اللي تفضل تنزل فيها؟ </label><br><br>
+                        <div class="block" id="check_box" >
+                            <ul>
+                                <li>
+                                    <button type="button" class="btn"  id="bt1" onclick="when_click('bt1')"/>
+                                    <input type="checkbox" id="bt1ck" />   السبت
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt2" onclick="when_click('bt2')"/>
+                                    <input type="checkbox" id="bt2ck" />   الاحد
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt3" onclick="when_click('bt3')"/>
+                                    <input type="checkbox" id="bt3ck" />   الاثنين
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt4" onclick="when_click('bt4')"/>
+                                    <input type="checkbox" id="bt4ck" />   الثلاثاء
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt5" onclick="when_click('bt5')"/>
+                                    <input type="checkbox" id="bt5ck" />   الاربعاء
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt6" onclick="when_click('bt6')"/>
+                                    <input type="checkbox" id="bt6ck" />   الخميس
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div> <br>
+            <div class="form-group row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <label for="email">ايه المواد اللي بتفضل تحضرها ؟ </label><br><br>
+                        <div class="block" id="check_box" align="middle">
+                            <ul>
+                                <li>
+                                    <button type="button" class="btn"  id="bt7" onclick="when_click('bt7')"/>
+                                    <input type="checkbox" id="bt7ck" />   مادة1
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt8" onclick="when_click('bt8')"/>
+                                    <input type="checkbox" id="bt8ck" />   مادة2
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt9" onclick="when_click('bt9')"/>
+                                    <input type="checkbox" id="bt9ck" />   مادة3
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt10" onclick="when_click('bt10')"/>
+                                    <input type="checkbox" id="bt10ck" />   مادة4
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt11" onclick="when_click('bt11')"/>
+                                    <input type="checkbox" id="bt11ck" />   مادة5
+                                </li>
+                            </ul>
+                        </div>
+                </div><br>
+            </div> <br>
+            <div class="form-group row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <label for="email">ايه الفترات اللي حابب تحضر فيها  ؟ </label><br><br>
+                        <div class="block" id="check_box" align="middle">
+                            <ul>
+                                <li>
+                                    <button type="button" class="btn"  id="bt12" onclick="when_click('bt12')"/>
+                                    <input type="checkbox" id="bt12ck" />   فترة اولي
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt13" onclick="when_click('bt13')"/>
+                                    <input type="checkbox" id="bt13ck" />   فتره ثانيه
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt14" onclick="when_click('bt14')"/>
+                                    <input type="checkbox" id="bt14ck" />   فترة ثالثه
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt15" onclick="when_click('bt15')"/>
+                                    <input type="checkbox" id="bt15ck" />   فتره رابعه
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt16" onclick="when_click('bt16')"/>
+                                    <input type="checkbox" id="bt16ck" />   فتره خامسه
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt17" onclick="when_click('bt17')"/>
+                                    <input type="checkbox" id="bt17ck" />   فتره سادسه
+                                </li>
+                                <li>
+                                    <button type="button" class="btn"  id="bt18" onclick="when_click('bt18')"/>
+                                    <input type="checkbox" id="bt18ck" />   فتره سابعه
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div> 
+        </form>
+     </div>
+
+    <script type="text/javascript">
+
+        function view_enter(id)
+        {
+            document.getElementById(id);
+        }
+        
+        function view_out(id)
+        {
+            document.getElementById(id);
+        }
+        
+        function when_click(id){
+            var color = document.getElementById(id).style.backgroundColor;
+            if(color != "buttonface"&& color != "")
+            {
+                document.getElementById(id+"ck").checked = false;
+                document.getElementById(id).style.backgroundColor="buttonface";
+            }
+            else
+            {
+                document.getElementById(id+"ck").checked = true;
+                document.getElementById(id).style.backgroundColor="#d9534f";
+                
+            }
+        }
+        
+    </script>
+</body>
+
+</html>
